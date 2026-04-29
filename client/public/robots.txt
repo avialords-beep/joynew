@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Запрет индексации технических страниц
+Disallow: /404
+Disallow: /privacy
+Disallow: /otvetstvennaya-igra
+
+# Яндекс-бот
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+# Google-бот
+User-agent: Googlebot
+Allow: /
+
+# Sitemap
+Sitemap: https://joycasinoseo.ru/sitemap.xml
+
+# Host (для Яндекса — главное зеркало)
+Host: joycasinoseo.ru

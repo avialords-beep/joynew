@@ -1,0 +1,337 @@
+/*
+ * JoyCasino SEO — Global Design System
+ * Style: Editorial Trust Design (Modern Review Portal)
+ * Colors: Navy #1a3a5c (trust), Orange #e8541a (action), White #ffffff (clarity)
+ * Fonts: Merriweather (headings) + Source Sans 3 (body)
+ * Layout: 70/30 content/sidebar split, editorial structure
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  /* Brand Colors */
+  --navy: oklch(0.28 0.07 240);
+  --navy-dark: oklch(0.18 0.07 240);
+  --navy-light: oklch(0.38 0.07 240);
+  --orange: oklch(0.62 0.18 35);
+  --orange-dark: oklch(0.52 0.18 35);
+  --gold: oklch(0.78 0.12 75);
+  --green-trust: oklch(0.52 0.14 145);
+
+  /* Semantic Colors */
+  --radius: 0.5rem;
+  --background: oklch(0.98 0.002 240);
+  --foreground: oklch(0.18 0.03 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.03 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.03 240);
+  --primary: oklch(0.28 0.07 240);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.95 0.01 240);
+  --secondary-foreground: oklch(0.28 0.07 240);
+  --muted: oklch(0.95 0.005 240);
+  --muted-foreground: oklch(0.52 0.02 240);
+  --accent: oklch(0.62 0.18 35);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.88 0.01 240);
+  --input: oklch(0.92 0.005 240);
+  --ring: oklch(0.28 0.07 240);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', Georgia, serif;
+    font-weight: 700;
+    line-height: 1.25;
+    color: oklch(0.18 0.03 240);
+  }
+  h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+  h2 { font-size: clamp(1.35rem, 3vw, 1.875rem); margin-top: 2rem; margin-bottom: 1rem; }
+  h3 { font-size: clamp(1.1rem, 2.5vw, 1.375rem); margin-top: 1.5rem; margin-bottom: 0.75rem; }
+  p { margin-bottom: 1rem; }
+  a { color: oklch(0.28 0.07 240); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  button:not(:disabled), [role="button"]:not([aria-disabled="true"]) { cursor: pointer; }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .container { padding-left: 2rem; padding-right: 2rem; max-width: 1280px; }
+  }
+
+  .flex { min-height: 0; min-width: 0; }
+
+  /* Casino Rating Stars */
+  .star-rating {
+    display: inline-flex;
+    gap: 2px;
+    color: oklch(0.78 0.12 75);
+  }
+
+  /* CTA Button Primary */
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    background: oklch(0.62 0.18 35);
+    color: white;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 0.375rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn-cta:hover {
+    background: oklch(0.52 0.18 35);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px oklch(0.62 0.18 35 / 0.4);
+    text-decoration: none;
+    color: white;
+  }
+
+  /* CTA Button Secondary */
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1.5rem;
+    background: transparent;
+    color: oklch(0.28 0.07 240);
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 0.375rem;
+    border: 2px solid oklch(0.28 0.07 240);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+  .btn-secondary:hover {
+    background: oklch(0.28 0.07 240);
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Casino Card */
+  .casino-card {
+    background: white;
+    border: 1px solid oklch(0.88 0.01 240);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .casino-card:hover {
+    box-shadow: 0 8px 24px oklch(0.28 0.07 240 / 0.12);
+    transform: translateY(-2px);
+  }
+
+  /* Rating Badge */
+  .rating-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    font-weight: 900;
+    font-size: 1.1rem;
+    font-family: 'Merriweather', serif;
+  }
+  .rating-badge.excellent { background: oklch(0.52 0.14 145); color: white; }
+  .rating-badge.good { background: oklch(0.62 0.14 145); color: white; }
+  .rating-badge.average { background: oklch(0.78 0.12 75); color: white; }
+
+  /* Trust Badge */
+  .trust-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    background: oklch(0.52 0.14 145 / 0.1);
+    color: oklch(0.38 0.12 145);
+    border: 1px solid oklch(0.52 0.14 145 / 0.3);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* Section Header */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .section-header::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 1.75rem;
+    background: oklch(0.62 0.18 35);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Bonus Card */
+  .bonus-card {
+    background: linear-gradient(135deg, oklch(0.28 0.07 240), oklch(0.22 0.07 240));
+    color: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .bonus-card::after {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 200px;
+    height: 200px;
+    background: oklch(0.78 0.12 75 / 0.1);
+    border-radius: 50%;
+  }
+
+  /* FAQ Item */
+  .faq-item {
+    border-bottom: 1px solid oklch(0.88 0.01 240);
+  }
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: oklch(0.18 0.03 240);
+    transition: color 0.2s;
+  }
+  .faq-question:hover { color: oklch(0.28 0.07 240); }
+  .faq-answer {
+    padding-bottom: 1rem;
+    color: oklch(0.38 0.02 240);
+    line-height: 1.7;
+  }
+
+  /* Progress Bar for Ratings */
+  .rating-bar {
+    height: 8px;
+    background: oklch(0.92 0.005 240);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .rating-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, oklch(0.28 0.07 240), oklch(0.62 0.18 35));
+    transition: width 1s ease;
+  }
+
+  /* Sticky Sidebar */
+  .sticky-sidebar {
+    position: sticky;
+    top: 80px;
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: oklch(0.52 0.02 240);
+    margin-bottom: 1.5rem;
+  }
+  .breadcrumb a { color: oklch(0.28 0.07 240); }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  /* Scroll to top */
+  .scroll-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: oklch(0.28 0.07 240);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px oklch(0.28 0.07 240 / 0.3);
+    transition: all 0.2s;
+    z-index: 100;
+  }
+  .scroll-top:hover { background: oklch(0.22 0.07 240); transform: translateY(-2px); }
+
+  /* Animate on scroll */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
